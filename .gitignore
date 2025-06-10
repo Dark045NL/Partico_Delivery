@@ -1,52 +1,74 @@
-# Prerequisites
-*.d
+## .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
+## MAUI build artifacts
+**/platforms/*
+**/Resources/Raw/*.db
+*.apk
+*.aab
 *.app
-*.i*86
-*.x86_64
-*.hex
+*.ipa
+*.xcarchive
+*.dsym
+*.bundle
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
+## VS Code
+.vscode/
+
+## Visual Studio
+.vs/
+*.vc.db
+*.VC.db
 *.pdb
+*.dbmdl
+*.log
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+## macOS and iOS
+.DS_Store
+*.plist
+*.xcuserstate
+
+## Windows
+Thumbs.db
+desktop.ini
+
+## JetBrains
+.idea/
+*.iml
+
+## Rider
+*.sln.iml
+
+## MAUI Hot Reload
+*.hotreload.*
+
+## NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.assets.json
+
+## Local config
+*.env
+*.local.json
+
+# Ignore user-specific secrets and credentials
+secrets.json
+
+## Build outputs
+Build/
+AppPackages/
+TestResults/
+publish/
+
+## Node/npm (if used for frontend)
+node_modules/
+npm-debug.log
+yarn-error.log
