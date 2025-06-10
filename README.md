@@ -34,6 +34,8 @@ De applicatie stelt bezorgers in staat om:
 
 - **📍 Geolocatie (GPS):** Automatische locatie-opname bij statuswijziging
 - **📸 Camera:** Foto maken van het pakket als bewijs van aflevering
+- **🔔 Push notificaties:** Verstuurd naar de klant zodra de status van de levering verandert
+
 - 
 
 ---
