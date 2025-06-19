@@ -1,0 +1,39 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Partico_Delivery.Pages.RoutePage"
+             Title="Route"
+             BackgroundColor="White">
+
+    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
+        <Button Text="← Terug"
+                Clicked="OnBackButtonClicked"
+                HorizontalOptions="Start"
+                BackgroundColor="Transparent"
+                TextColor="Black"
+                FontSize="18" />
+
+        <Label Text="Navigatie naar afleveradres"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <Button Text="📍 Huidige locatie ophalen"
+                Clicked="OnGetLocationClicked"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                CornerRadius="12" />
+
+        <Button Text="🧭 Open route in Kaarten"
+                Clicked="OnNavigateClicked"
+                BackgroundColor="#34C759"
+                TextColor="White"
+                CornerRadius="12" />
+
+        <Label x:Name="locationLabel"
+               Text=""
+               FontSize="16"
+               HorizontalOptions="Center"
+               TextColor="Gray"
+               HorizontalTextAlignment="Center" />
+    </VerticalStackLayout>
+</ContentPage>

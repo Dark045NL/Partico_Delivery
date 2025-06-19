@@ -3,12 +3,13 @@
     x:Class="Partico_Delivery.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Partico_Delivery"
+    xmlns:local="clr-namespace:Partico_Delivery.Pages"
+    Shell.FlyoutBehavior="Disabled"
     Title="Partico_Delivery">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <ShellContent Route="home" Title="Home" ContentTemplate="{DataTemplate local:HomePage}" />
+    <ShellContent Route="scanner" Title="Scanner" ContentTemplate="{DataTemplate local:QRScannerPage}" />
+    <ShellContent Route="route" Title="Route" ContentTemplate="{DataTemplate local:RoutePage}" />
+    <ShellContent Route="settings" Title="Instellingen" ContentTemplate="{DataTemplate local:SettingsPage}" />
+    <ShellContent Route="deliveries" Title="Leveringen" ContentTemplate="{DataTemplate local:DeliveriesPage}" />
 </Shell>

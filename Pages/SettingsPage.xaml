@@ -1,0 +1,34 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Partico_Delivery.Pages.SettingsPage"
+             Title="Instellingen"
+             BackgroundColor="White">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <Button Text="← Terug"
+                Clicked="OnBackButtonClicked"
+                HorizontalOptions="Start"
+                BackgroundColor="Transparent"
+                TextColor="Black"
+                FontSize="18" />
+
+        <Label Text="Voorkeuren"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+            <Label Text="Pushnotificaties" FontSize="18" VerticalOptions="Center"/>
+            <Switch x:Name="NotificationSwitch" Toggled="OnNotificationToggled" />
+        </HorizontalStackLayout>
+
+        <Label x:Name="StatusLabel"
+               Text=""
+               TextColor="Gray"
+               FontSize="14"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center" />
+
+    </VerticalStackLayout>
+</ContentPage>

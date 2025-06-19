@@ -1,0 +1,63 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Partico_Delivery.ViewModels"
+             xmlns:converters="clr-namespace:Partico_Delivery.Pages"
+             x:Class="Partico_Delivery.Pages.DeliveriesPage"
+             x:Name="DeliveriesPageRef"
+             Title="Leveringen">
+    <ContentPage.BindingContext>
+        <vm:DeliveriesViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StatusToTextConverter x:Key="StatusToTextConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <VerticalStackLayout Padding="20">
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding ErrorMessage, StringFormat='{0}'}" />
+        <CollectionView ItemsSource="{Binding Orders}" HeightRequest="600">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" Padding="10" BorderColor="Gray">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Customer.Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding Customer.Address}" FontSize="14" />
+                            <Label Text="{Binding OrderDate, StringFormat='Besteld op: {0:dd-MM-yyyy HH:mm}'}" FontSize="12" />
+                            <Label Text="{Binding DeliveryStates[0].State, Converter={StaticResource StatusToTextConverter}, StringFormat='Status: {0}'}" FontSize="12" IsVisible="False">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding DeliveryStates.Count}" Value="0">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Label" Binding="{Binding DeliveryStates.Count}" Value="1">
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                            <Button Text="Status bijwerken"
+                                    Command="{Binding BindingContext.UpdateStatusCommand, Source={x:Reference Name=DeliveriesPageRef}}"
+                                    CommandParameter="{Binding .}">
+                                <Button.Triggers>
+                                    <DataTrigger TargetType="Button" Binding="{Binding DeliveryStates.Count}" Value="0">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </Button.Triggers>
+                            </Button>
+                            <Label Text="Geen status beschikbaar" TextColor="Gray" FontSize="12" IsVisible="False">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding DeliveryStates.Count}" Value="0">
+                                        <Setter Property="IsVisible" Value="True" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Herlaad" Clicked="OnReloadClicked" />
+    </VerticalStackLayout>
+</ContentPage>

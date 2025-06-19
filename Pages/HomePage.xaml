@@ -1,0 +1,44 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Partico_Delivery.Pages.HomePage"
+             Title="Home"
+             BackgroundColor="White">
+
+    <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
+
+        <Label Text="Partico Delivery"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="Black" />
+
+        <Button Text="📦 Scan QR-code"
+                FontSize="18"
+                Clicked="OnScanClicked"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                CornerRadius="12" />
+
+        <Button Text="🗺️ Route naar volgende adres"
+                FontSize="18"
+                Clicked="OnRouteClicked"
+                BackgroundColor="#34C759"
+                TextColor="White"
+                CornerRadius="12" />
+
+        <Button Text="🔔 Instellingen"
+                FontSize="18"
+                Clicked="OnSettingsClicked"
+                BackgroundColor="#5856D6"
+                TextColor="White"
+                CornerRadius="12" />
+
+        <Button Text="📋 Bekijk leveringen"
+                FontSize="18"
+                Clicked="OnDeliveriesClicked"
+                BackgroundColor="#FF9500"
+                TextColor="White"
+                CornerRadius="12" />
+
+    </VerticalStackLayout>
+</ContentPage>

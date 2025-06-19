@@ -1,15 +1,19 @@
-﻿namespace Partico_Delivery
+﻿using Partico_Delivery.Pages;
+
+namespace Partico_Delivery
 {
     public partial class App : Application
     {
         public App()
         {
             InitializeComponent();
-        }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
+            bool isFirstTime = Preferences.Default.Get("HasSeenOnboarding", false);
+
+            if (!isFirstTime)
+                MainPage = new OnboardingPage();
+            else
+                MainPage = new AppShell();
         }
     }
 }

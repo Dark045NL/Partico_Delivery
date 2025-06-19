@@ -1,0 +1,35 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Partico_Delivery.Pages.OnboardingPage"
+             BackgroundColor="White"
+             Title="Welkom">
+
+    <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+        <Button Text="← Terug"
+                Clicked="OnBackButtonClicked"
+                HorizontalOptions="Start"
+                BackgroundColor="Transparent"
+                TextColor="Black"
+                FontSize="18" />
+
+        <Label Text="Welkom bij Partico Delivery"
+               FontSize="28"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="Black" />
+
+        <Label Text="• Scan QR-codes om pakketten op te halen\n• Volg routes met GPS\n• Ontvang meldingen"
+               FontSize="16"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               TextColor="Gray" />
+
+        <Button Text="Start"
+                FontSize="20"
+                Padding="10"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                Clicked="StartButton_Clicked"
+                CornerRadius="12" />
+    </VerticalStackLayout>
+</ContentPage>
