@@ -26683,11 +26683,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/youri/Downloads/Partico_Delivery/Partico_Delivery.csproj",
+      "projectUniqueName": "/Users/youri/Projects/Partico_delivery/Partico_Delivery.csproj",
       "projectName": "Partico_Delivery",
-      "projectPath": "/Users/youri/Downloads/Partico_Delivery/Partico_Delivery.csproj",
+      "projectPath": "/Users/youri/Projects/Partico_delivery/Partico_Delivery.csproj",
       "packagesPath": "/Users/youri/.nuget/packages/",
-      "outputPath": "/Users/youri/Downloads/Partico_Delivery/obj/",
+      "outputPath": "/Users/youri/Projects/Partico_delivery/obj/",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [

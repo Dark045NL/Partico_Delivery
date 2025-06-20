@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "TBTLg7nC5Sw=",
+  "dgSpecHash": "9b1xCIv1a7k=",
   "success": true,
-  "projectFilePath": "/Users/youri/Downloads/Partico_Delivery/Partico_Delivery.csproj",
+  "projectFilePath": "/Users/youri/Projects/Partico_delivery/Partico_Delivery.csproj",
   "expectedPackageFiles": [
     "/Users/youri/.nuget/packages/googlegson/2.10.1.4/googlegson.2.10.1.4.nupkg.sha512",
     "/Users/youri/.nuget/packages/microsoft.extensions.configuration/8.0.0/microsoft.extensions.configuration.8.0.0.nupkg.sha512",

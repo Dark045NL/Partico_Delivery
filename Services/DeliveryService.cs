@@ -14,7 +14,10 @@ namespace Partico_Delivery.Services
         public DeliveryService()
         {
             _httpClient = new HttpClient();
-            _httpClient.DefaultRequestHeaders.Add("ApiKey", "588a40b1-d4c2-4efb-9a7a-6d2b02baa7c6");
+            var apiKey = Environment.GetEnvironmentVariable("PARTICO_API_KEY");
+            if (string.IsNullOrEmpty(apiKey))
+                throw new InvalidOperationException("API key is not set. Please set the PARTICO_API_KEY environment variable.");
+            _httpClient.DefaultRequestHeaders.Add("ApiKey", apiKey);
         }
 
         public async Task<List<Order>> GetOrdersAsync()
