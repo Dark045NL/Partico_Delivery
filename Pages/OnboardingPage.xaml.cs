@@ -13,7 +13,10 @@ namespace Partico_Delivery.Pages
         private void StartButton_Clicked(object sender, EventArgs e)
         {
             Preferences.Default.Set("HasSeenOnboarding", true);
-            Application.Current.MainPage = new AppShell(); // Gaat naar HomePage
+            if (Application.Current != null)
+            {
+                Application.Current.MainPage = new AppShell(); // Gaat naar HomePage
+            }
         }
 
         private void OnBackButtonClicked(object sender, EventArgs e)

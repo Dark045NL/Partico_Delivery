@@ -18,7 +18,7 @@ namespace Partico_Delivery
                 .UseBarcodeReader();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

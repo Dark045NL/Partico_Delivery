@@ -9,14 +9,13 @@ namespace Partico_Delivery.Services
     public class DeliveryService
     {
         private readonly HttpClient _httpClient;
-        private const string BaseUrl = "http://51.137.100.120:5000/api/Order";
+        private const string BaseUrl = "https://api-partico.onrender.com/api/Order";
 
-        public DeliveryService()
+        public DeliveryService(string apiKey)
         {
             _httpClient = new HttpClient();
-            var apiKey = Environment.GetEnvironmentVariable("PARTICO_API_KEY");
             if (string.IsNullOrEmpty(apiKey))
-                throw new InvalidOperationException("API key is not set. Please set the PARTICO_API_KEY environment variable.");
+                throw new InvalidOperationException("API key is not set. Vul de API key in bij Instellingen.");
             _httpClient.DefaultRequestHeaders.Add("ApiKey", apiKey);
         }
 
@@ -30,7 +29,8 @@ namespace Partico_Delivery.Services
 
         public async Task<bool> UpdateDeliveryStateAsync(int deliveryStateId, int newState)
         {
-            var url = $"http://51.137.100.120:5000/api/DeliveryStates/UpdateDeliveryState";
+            // Nieuwe endpoint voor status update (voorbeeld: /api/Order/UpdateDeliveryState)
+            var url = $"https://api-partico.onrender.com/api/Order/UpdateDeliveryState";
             var payload = new
             {
                 id = deliveryStateId,
@@ -39,6 +39,15 @@ namespace Partico_Delivery.Services
             var content = new StringContent(JsonSerializer.Serialize(payload), System.Text.Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(url, content);
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<PagedOrderResponse> GetOrdersPagedAsync(int page = 1, int pageSize = 5)
+        {
+            var url = $"{BaseUrl}?page={page}&pageSize={pageSize}";
+            var response = await _httpClient.GetAsync(url);
+            response.EnsureSuccessStatusCode();
+            var json = await response.Content.ReadAsStringAsync();
+            return JsonSerializer.Deserialize<PagedOrderResponse>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }) ?? new PagedOrderResponse();
         }
     }
 }

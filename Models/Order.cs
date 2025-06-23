@@ -35,6 +35,8 @@ namespace Partico_Delivery.Models
                 _ => "Onbekend"
             };
         }
+
+        public string? FirstDeliveryStatus => DeliveryStates != null && DeliveryStates.Count > 0 ? DeliveryStates[0].Status : null;
     }
 
     public class Customer
@@ -54,20 +56,14 @@ namespace Partico_Delivery.Models
         [JsonPropertyName("id")]
         public int Id { get; set; }
 
-        [JsonPropertyName("state")]
-        public int State { get; set; }
+        [JsonPropertyName("status")]
+        public string Status { get; set; } = string.Empty;
 
-        [JsonPropertyName("dateTime")]
-        public DateTime DateTime { get; set; }
+        [JsonPropertyName("updatedAt")]
+        public DateTime UpdatedAt { get; set; }
 
         [JsonPropertyName("orderId")]
         public int OrderId { get; set; }
-
-        [JsonPropertyName("deliveryServiceId")]
-        public int DeliveryServiceId { get; set; }
-
-        [JsonPropertyName("deliveryService")]
-        public DeliveryService DeliveryService { get; set; } = null!;
     }
 
     public class DeliveryService
@@ -92,5 +88,17 @@ namespace Partico_Delivery.Models
 
         [JsonPropertyName("price")]
         public decimal Price { get; set; }
+    }
+
+    public class PagedOrderResponse
+    {
+        [JsonPropertyName("total")]
+        public int Total { get; set; }
+        [JsonPropertyName("page")]
+        public int Page { get; set; }
+        [JsonPropertyName("pageSize")]
+        public int PageSize { get; set; }
+        [JsonPropertyName("data")]
+        public List<Order> Data { get; set; } = new();
     }
 }

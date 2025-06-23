@@ -23,6 +23,20 @@
             <Switch x:Name="NotificationSwitch" Toggled="OnNotificationToggled" />
         </HorizontalStackLayout>
 
+        <Label Text="API Key" FontSize="18" />
+        <Entry x:Name="ApiKeyEntry"
+               Placeholder="Voer je API key in"
+               TextChanged="OnApiKeyChanged"
+               IsPassword="True"
+               FontSize="16" />
+
+        <Button Text="Opslaan API Key"
+                Clicked="OnSaveApiKeyClicked"
+                HorizontalOptions="Center"
+                BackgroundColor="#007AFF"
+                TextColor="White"
+                FontSize="18" />
+
         <Label x:Name="StatusLabel"
                Text=""
                TextColor="Gray"
