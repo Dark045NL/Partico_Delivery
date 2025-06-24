@@ -37,7 +37,10 @@
                             <Label Text="{Binding Customer.Name}" FontAttributes="Bold" />
                             <Label Text="{Binding Customer.Address}" FontSize="14" />
                             <Label Text="{Binding OrderDate, StringFormat='Besteld op: {0:dd-MM-yyyy HH:mm}'}" FontSize="12" />
-                            <Label Text="{Binding FirstDeliveryStatus, Converter={StaticResource StatusToTextConverter}, StringFormat='Status: {0}'}" FontSize="12" IsVisible="{Binding DeliveryStates.Count, Converter={StaticResource StatusCountToVisibleConverter}}" />
+                            <Picker Title="Status aanpassen"
+                                    ItemsSource="{Binding BindingContext.PossibleStatuses, Source={x:Reference Name=DeliveriesPageRef}}"
+                                    SelectedItem="{Binding DeliveryStates[0].Status, Mode=TwoWay}"
+                                    SelectedIndexChanged="OnStatusChanged" />
                             <Button Text="Status bijwerken"
                                     Command="{Binding BindingContext.UpdateStatusCommand, Source={x:Reference Name=DeliveriesPageRef}}"
                                     CommandParameter="{Binding .}">
@@ -47,13 +50,6 @@
                                     </DataTrigger>
                                 </Button.Triggers>
                             </Button>
-                            <Label Text="Geen status beschikbaar" TextColor="Gray" FontSize="12" IsVisible="False">
-                                <Label.Triggers>
-                                    <DataTrigger TargetType="Label" Binding="{Binding DeliveryStates.Count}" Value="0">
-                                        <Setter Property="IsVisible" Value="True" />
-                                    </DataTrigger>
-                                </Label.Triggers>
-                            </Label>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>

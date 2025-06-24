@@ -36,6 +36,16 @@ namespace Partico_Delivery.ViewModels
         public int Page { get; set; } = 1;
         public int PageSize { get; set; } = 10;
 
+        public List<string> PossibleStatuses { get; } = new() { "Out for Delivery", "Awaiting Delivery", "Delivered" };
+
+        // Mapping van statusnaam naar statusnummer
+        private readonly Dictionary<string, int> StatusNameToNumber = new()
+        {
+            { "Out for Delivery", 1 },
+            { "Awaiting Delivery", 2 },
+            { "Delivered", 3 }
+        };
+
         public DeliveriesViewModel()
         {
             // Haal de API key uit Preferences
@@ -88,6 +98,16 @@ namespace Partico_Delivery.ViewModels
         public async Task<bool> UpdateOrderStatusAsync(int deliveryStateId, int newState)
         {
             return await _deliveryService.UpdateDeliveryStateAsync(deliveryStateId, newState);
+        }
+
+        public async Task UpdateOrderStatusAsync(Order order, string newStatus)
+        {
+            if (order.DeliveryStates.Count > 0 && StatusNameToNumber.TryGetValue(newStatus, out int statusNumber))
+            {
+                var deliveryState = order.DeliveryStates[0];
+                deliveryState.Status = newStatus;
+                await _deliveryService.UpdateDeliveryStateAsync(deliveryState.Id, statusNumber);
+            }
         }
 
         private async Task UpdateStatusAsync(Order? order)

@@ -31,5 +31,17 @@ namespace Partico_Delivery.Pages
                 _ = vm.LoadOrdersAsync();
             }
         }
+
+        private async void OnStatusChanged(object sender, EventArgs e)
+        {
+            if (sender is Picker picker && picker.BindingContext is Partico_Delivery.Models.Order order)
+            {
+                var selectedStatus = picker.SelectedItem as string;
+                if (!string.IsNullOrEmpty(selectedStatus) && BindingContext is DeliveriesViewModel vm)
+                {
+                    await vm.UpdateOrderStatusAsync(order, selectedStatus);
+                }
+            }
+        }
     }
 }
