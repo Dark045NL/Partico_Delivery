@@ -1,5 +1,4 @@
 ﻿using ZXing.Net.Maui;
-using ZXing.Net.Maui.Controls;
 
 
 namespace Partico_Delivery.Pages

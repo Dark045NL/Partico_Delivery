@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9FF187EE-CFD0-4CDE-8A78-11BA3E53837D}|Partico_Delivery.csproj|c:\\users\\steph\\documents\\zuyd\\partico_delivery\\pages\\pagecountconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9FF187EE-CFD0-4CDE-8A78-11BA3E53837D}|Partico_Delivery.csproj|solutionrelative:pages\\pagecountconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9FF187EE-CFD0-4CDE-8A78-11BA3E53837D}|Partico_Delivery.csproj|c:\\users\\steph\\documents\\zuyd\\partico_delivery\\platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{9FF187EE-CFD0-4CDE-8A78-11BA3E53837D}|Partico_Delivery.csproj|solutionrelative:platforms\\android\\androidmanifest.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
@@ -102,19 +106,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PageCountConverter.cs",
+              "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\PageCountConverter.cs",
+              "RelativeDocumentMoniker": "Pages\\PageCountConverter.cs",
+              "ToolTip": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\PageCountConverter.cs",
+              "RelativeToolTip": "Pages\\PageCountConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-24T08:57:09.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AndroidManifest.xml",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Platforms\\Android\\AndroidManifest.xml",
               "RelativeDocumentMoniker": "Platforms\\Android\\AndroidManifest.xml",
               "ToolTip": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Platforms\\Android\\AndroidManifest.xml",
               "RelativeToolTip": "Platforms\\Android\\AndroidManifest.xml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABiAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
               "WhenOpened": "2025-06-20T11:23:09.104Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Xamarin.Android.Aapt2.targets",
               "DocumentMoniker": "C:\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\34.0.154\\tools\\Xamarin.Android.Aapt2.targets",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\34.0.154\\tools\\Xamarin.Android.Aapt2.targets",
@@ -122,12 +139,11 @@
               "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\dotnet\\packs\\Microsoft.Android.Sdk.Windows\\34.0.154\\tools\\Xamarin.Android.Aapt2.targets",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAANUAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-06-20T11:13:07.778Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-06-20T11:13:07.778Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "RoutePage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\RoutePage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\RoutePage.xaml.cs",
@@ -135,11 +151,12 @@
               "RelativeToolTip": "Pages\\RoutePage.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:52:26.548Z"
+              "WhenOpened": "2025-06-19T19:52:26.548Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\App.xaml.cs",
               "RelativeDocumentMoniker": "App.xaml.cs",
@@ -151,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "HomePage.xaml",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\HomePage.xaml",
               "RelativeDocumentMoniker": "Pages\\HomePage.xaml",
@@ -163,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "HomePage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\HomePage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\HomePage.xaml.cs",
@@ -171,11 +188,12 @@
               "RelativeToolTip": "Pages\\HomePage.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:20:27.727Z"
+              "WhenOpened": "2025-06-19T19:20:27.727Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Partico_Delivery.csproj",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Partico_Delivery.csproj",
               "RelativeDocumentMoniker": "Partico_Delivery.csproj",
@@ -188,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "QRScannerPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\QRScannerPage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\QRScannerPage.xaml.cs",
@@ -196,11 +214,12 @@
               "RelativeToolTip": "Pages\\QRScannerPage.xaml.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAArwBUAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:22:51.246Z"
+              "WhenOpened": "2025-06-19T19:22:51.246Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "SettingsPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\SettingsPage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\SettingsPage.xaml.cs",
@@ -213,7 +232,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "QRScannerPage.xaml",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\QRScannerPage.xaml",
               "RelativeDocumentMoniker": "Pages\\QRScannerPage.xaml",
@@ -226,7 +245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "OnboardingPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\OnboardingPage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\OnboardingPage.xaml.cs",
@@ -234,11 +253,12 @@
               "RelativeToolTip": "Pages\\OnboardingPage.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:20:00.844Z"
+              "WhenOpened": "2025-06-19T19:20:00.844Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "AppShell.xaml",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\AppShell.xaml",
               "RelativeDocumentMoniker": "AppShell.xaml",
@@ -250,7 +270,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "AppShell.xaml.cs",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\AppShell.xaml.cs",
               "RelativeDocumentMoniker": "AppShell.xaml.cs",
@@ -258,11 +278,12 @@
               "RelativeToolTip": "AppShell.xaml.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:25:04.578Z"
+              "WhenOpened": "2025-06-19T19:25:04.578Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Info.plist",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Platforms\\iOS\\Info.plist",
               "RelativeDocumentMoniker": "Platforms\\iOS\\Info.plist",
@@ -274,7 +295,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "SettingsPage.xaml",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\SettingsPage.xaml",
               "RelativeDocumentMoniker": "Pages\\SettingsPage.xaml",
@@ -287,7 +308,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "RoutePage.xaml",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\RoutePage.xaml",
               "RelativeDocumentMoniker": "Pages\\RoutePage.xaml",
@@ -300,7 +321,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "Partico_Delivery.csproj.Backup.tmp",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Partico_Delivery.csproj.Backup.tmp",
               "RelativeDocumentMoniker": "Partico_Delivery.csproj.Backup.tmp",
@@ -312,7 +333,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "App.xaml",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\App.xaml",
               "RelativeDocumentMoniker": "App.xaml",
@@ -324,7 +345,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "MauiProgram.cs",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\MauiProgram.cs",
               "RelativeDocumentMoniker": "MauiProgram.cs",
@@ -332,11 +353,12 @@
               "RelativeToolTip": "MauiProgram.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-19T19:22:22.853Z"
+              "WhenOpened": "2025-06-19T19:22:22.853Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "OnboardingPage.xaml",
               "DocumentMoniker": "C:\\Users\\steph\\Documents\\Zuyd\\Partico_Delivery\\Pages\\OnboardingPage.xaml",
               "RelativeDocumentMoniker": "Pages\\OnboardingPage.xaml",
@@ -344,7 +366,8 @@
               "RelativeToolTip": "Pages\\OnboardingPage.xaml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-19T19:19:54.567Z"
+              "WhenOpened": "2025-06-19T19:19:54.567Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,7 +1,3 @@
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.ApplicationModel;
-using Microsoft.Maui.Devices.Sensors;
-
 namespace Partico_Delivery.Pages
 {
     public partial class RoutePage : ContentPage

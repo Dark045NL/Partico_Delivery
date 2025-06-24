@@ -1,6 +1,3 @@
-using System;
-using System.Globalization;
-using Microsoft.Maui.Controls;
 using Partico_Delivery.ViewModels;
 
 namespace Partico_Delivery.Pages

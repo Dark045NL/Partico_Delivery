@@ -1,6 +1,3 @@
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Storage;
-
 namespace Partico_Delivery.Pages
 {
     public partial class SettingsPage : ContentPage

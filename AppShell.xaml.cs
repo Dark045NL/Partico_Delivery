@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-
-namespace Partico_Delivery
+﻿namespace Partico_Delivery
 {
     public partial class AppShell : Shell
     {

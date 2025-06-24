@@ -1,9 +1,7 @@
-using System.Collections.ObjectModel;
 using Partico_Delivery.Models;
-using DeliveryServiceApi = Partico_Delivery.Services.DeliveryService;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Storage;
+using DeliveryServiceApi = Partico_Delivery.Services.DeliveryService;
 
 namespace Partico_Delivery.ViewModels
 {

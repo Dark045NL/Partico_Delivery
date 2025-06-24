@@ -1,5 +1,3 @@
-using Microsoft.Maui.Controls;
-
 namespace Partico_Delivery.Pages
 {
     public static class ToastService

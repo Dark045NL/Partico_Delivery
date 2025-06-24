@@ -1,7 +1,4 @@
-using System;
 using System.Globalization;
-using System.Collections.Generic;
-using Microsoft.Maui.Controls;
 
 namespace Partico_Delivery.Pages
 {

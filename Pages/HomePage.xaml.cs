@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls;
-
-namespace Partico_Delivery.Pages
+﻿namespace Partico_Delivery.Pages
 {
     public partial class HomePage : ContentPage
     {
