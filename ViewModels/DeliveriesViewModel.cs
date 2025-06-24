@@ -100,6 +100,8 @@ namespace Partico_Delivery.ViewModels
             return await _deliveryService.UpdateDeliveryStateAsync(deliveryStateId, newState);
         }
 
+        public event Action<string>? StatusUpdateMessage;
+
         public async Task UpdateOrderStatusAsync(Order order, string newStatus)
         {
             if (order.DeliveryStates.Count > 0 && StatusNameToNumber.TryGetValue(newStatus, out int statusNumber))
@@ -115,24 +117,32 @@ namespace Partico_Delivery.ViewModels
             if (order == null || order.DeliveryStates.Count == 0)
                 return;
             var deliveryState = order.DeliveryStates[0];
-            // Toon een keuzemenu voor de status (kan niet direct in ViewModel, dus evt. via MessagingCenter of een event)
-            // Voor nu: verhoog status cyclisch
-            // Define the possible statuses in order
-            var statuses = new List<string> { "Pending", "InProgress", "Delivered", "Cancelled" };
+            var statuses = PossibleStatuses;
             int currentIndex = statuses.IndexOf(deliveryState.Status);
             int newIndex = (currentIndex + 1) % statuses.Count;
             string newStatus = statuses[newIndex];
-            bool success = await UpdateOrderStatusAsync(deliveryState.Id, newIndex + 1); // Assuming backend expects int
-            if (success)
+            if (StatusNameToNumber.TryGetValue(newStatus, out int statusNumber))
             {
-                deliveryState.Status = newStatus;
-                // Forceer UI refresh
-                var idx = Orders.IndexOf(order);
-                if (idx >= 0)
+                bool success = await UpdateOrderStatusAsync(deliveryState.Id, statusNumber);
+                if (success)
                 {
-                    Orders.RemoveAt(idx);
-                    Orders.Insert(idx, order);
+                    deliveryState.Status = newStatus;
+                    var idx = Orders.IndexOf(order);
+                    if (idx >= 0)
+                    {
+                        Orders.RemoveAt(idx);
+                        Orders.Insert(idx, order);
+                    }
+                    StatusUpdateMessage?.Invoke($"Status succesvol bijgewerkt naar '{newStatus}'");
                 }
+                else
+                {
+                    StatusUpdateMessage?.Invoke($"Fout: status kon niet worden bijgewerkt.");
+                }
+            }
+            else
+            {
+                StatusUpdateMessage?.Invoke("Fout: ongeldige status.");
             }
         }
 
