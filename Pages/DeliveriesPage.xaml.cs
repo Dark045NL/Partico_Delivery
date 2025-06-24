@@ -12,8 +12,7 @@ namespace Partico_Delivery.Pages
         public DeliveriesPage()
         {
             InitializeComponent();
-            // Remove this line to avoid double BindingContext assignment:
-            // BindingContext = new DeliveriesViewModel();
+            BindingContext = new DeliveriesViewModel();
         }
 
         protected override async void OnAppearing()
