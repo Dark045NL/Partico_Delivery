@@ -5,28 +5,26 @@
              x:Class="Partico_Delivery.Pages.DeliveriesPage"
              x:Name="DeliveriesPageRef"
              Title="Leveringen">
-    <ContentPage.BindingContext>
-        <vm:DeliveriesViewModel />
-    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:PageCountConverter x:Key="PageCountConverter" />
             <converters:StatusToTextConverter x:Key="StatusToTextConverter" />
             <converters:StatusCountToVisibleConverter x:Key="StatusCountToVisibleConverter" />
+            <converters:PrevPageEnabledConverter x:Key="PrevPageEnabledConverter" />
+            <converters:NextPageEnabledConverter x:Key="NextPageEnabledConverter" />
+            <converters:CurrentPageToColorConverter x:Key="CurrentPageToColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Herlaad" Clicked="OnReloadClicked" Order="Primary" Priority="0" />
+    </ContentPage.ToolbarItems>
+    <Grid RowSpacing="0" Padding="0,0,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <!-- Top bar with only the reload button, aligned right -->
-        <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End" VerticalOptions="Center" Padding="0,0,0,10">
-            <Button Text="Herlaad" Clicked="OnReloadClicked" VerticalOptions="Center" />
-        </HorizontalStackLayout>
         <!-- Orders list -->
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Orders}" HeightRequest="600">
+        <CollectionView Grid.Row="0" ItemsSource="{Binding Orders}" VerticalOptions="Fill">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" />
             </CollectionView.ItemsLayout>
@@ -56,13 +54,11 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
         <!-- Pagination (always visible at the bottom) -->
-        <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center" VerticalOptions="End" Margin="0,10,0,10"
-                               BindableLayout.ItemsSource="{Binding TotalOrders, Converter={StaticResource PageCountConverter}, ConverterParameter={Binding PageSize}}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Button Text="{Binding}" Command="{Binding BindingContext.GoToPageCommand, Source={x:Reference Name=DeliveriesPageRef}}" CommandParameter="{Binding}" />
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
+        <HorizontalStackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="End" Margin="0,10,0,10">
+            <Button Text="&lt;" Clicked="OnPrevPageClicked" IsEnabled="{Binding Page, Converter={StaticResource PrevPageEnabledConverter}}" />
+            <!-- Paginanummers als losse knoppen -->
+            <HorizontalStackLayout x:Name="PaginationNumbers" Spacing="2" MinimumHeightRequest="40" HorizontalOptions="Fill" />
+            <Button Text="&gt;" Clicked="OnNextPageClicked" IsEnabled="{Binding CanGoNext}" />
         </HorizontalStackLayout>
         <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding ErrorMessage, StringFormat='{0}'}" />
         <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />

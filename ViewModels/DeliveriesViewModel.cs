@@ -4,37 +4,88 @@ using DeliveryServiceApi = Partico_Delivery.Services.DeliveryService;
 using System.Windows.Input;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui.Storage;
+using System.ComponentModel;
 
 namespace Partico_Delivery.ViewModels
 {
-    public class DeliveriesViewModel
+    public class DeliveriesViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Order> Orders { get; set; } = new();
-        public bool IsBusy { get; set; }
-        public string ErrorMessage { get; set; } = string.Empty;
+        public event PropertyChangedEventHandler? PropertyChanged;
+        void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        ObservableCollection<Order> _orders = new();
+        public ObservableCollection<Order> Orders
+        {
+            get => _orders;
+            set { if (_orders != value) { _orders = value; OnPropertyChanged(nameof(Orders)); } }
+        }
+        bool _isBusy;
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set { if (_isBusy != value) { _isBusy = value; OnPropertyChanged(nameof(IsBusy)); } }
+        }
+        string _errorMessage = string.Empty;
+        public string ErrorMessage
+        {
+            get => _errorMessage;
+            set { if (_errorMessage != value) { _errorMessage = value; OnPropertyChanged(nameof(ErrorMessage)); } }
+        }
+        int _currentPage = 1;
+        public int CurrentPage
+        {
+            get => _currentPage;
+            set { if (_currentPage != value) { _currentPage = value; OnPropertyChanged(nameof(CurrentPage)); } }
+        }
+        int _totalOrders;
+        public int TotalOrders
+        {
+            get => _totalOrders;
+            set {
+                if (_totalOrders != value) {
+                    _totalOrders = value;
+                    OnPropertyChanged(nameof(TotalOrders));
+                    OnPropertyChanged(nameof(PageCount));
+                    OnPropertyChanged(nameof(CanGoNext));
+                }
+            }
+        }
+        int _page = 1;
+        public int Page
+        {
+            get => _page;
+            set {
+                if (_page != value) {
+                    _page = value;
+                    OnPropertyChanged(nameof(Page));
+                    OnPropertyChanged(nameof(CanGoNext));
+                }
+            }
+        }
+        int _pageSize = 10;
+        public int PageSize
+        {
+            get => _pageSize;
+            set {
+                if (_pageSize != value) {
+                    _pageSize = value;
+                    OnPropertyChanged(nameof(PageSize));
+                    OnPropertyChanged(nameof(PageCount));
+                    OnPropertyChanged(nameof(CanGoNext));
+                }
+            }
+        }
+        ObservableCollection<int> _pageNumbers = new();
+        public ObservableCollection<int> PageNumbers
+        {
+            get => _pageNumbers;
+            set { if (_pageNumbers != value) { _pageNumbers = value; OnPropertyChanged(nameof(PageNumbers)); } }
+        }
 
         private readonly DeliveryServiceApi _deliveryService;
 
         public ICommand UpdateStatusCommand { get; }
         public ICommand GoToPageCommand { get; }
-
-        private int _currentPage = 1;
-        public int CurrentPage
-        {
-            get => _currentPage;
-            set
-            {
-                if (_currentPage != value)
-                {
-                    _currentPage = value;
-                    // If you implement INotifyPropertyChanged, raise PropertyChanged here
-                }
-            }
-        }
-
-        public int TotalOrders { get; set; }
-        public int Page { get; set; } = 1;
-        public int PageSize { get; set; } = 10;
 
         public List<string> PossibleStatuses { get; } = new() { "Out for Delivery", "Awaiting Delivery", "Delivered" };
 
@@ -57,6 +108,17 @@ namespace Partico_Delivery.ViewModels
             {
                 ErrorMessage = "API key ontbreekt. Vul deze in bij Instellingen.";
             }
+        }
+
+        public void UpdatePageNumbers()
+        {
+            PageNumbers.Clear();
+            int pageCount = PageCount;
+            for (int i = 1; i <= pageCount; i++)
+                PageNumbers.Add(i);
+            OnPropertyChanged(nameof(PageNumbers));
+            // Force UI update for pagination
+            OnPropertyChanged(nameof(Page));
         }
 
         public async Task LoadOrdersAsync()
@@ -84,6 +146,9 @@ namespace Partico_Delivery.ViewModels
                 TotalOrders = paged.Total;
                 Page = paged.Page;
                 PageSize = paged.PageSize;
+                UpdatePageNumbers();
+                OnPropertyChanged(nameof(Orders));
+                OnPropertyChanged(nameof(CanGoNext));
             }
             catch (Exception ex)
             {
@@ -151,6 +216,20 @@ namespace Partico_Delivery.ViewModels
             if (page < 1) return;
             Page = page;
             await LoadOrdersAsync();
+            OnPropertyChanged(nameof(CanGoNext));
         }
+        public void GoToPreviousPage()
+        {
+            if (Page > 1)
+                GoToPageCommand.Execute(Page - 1);
+        }
+        public async Task GoToNextPage()
+        {
+            int pageCount = (int)Math.Ceiling((double)TotalOrders / PageSize);
+            if (Page < pageCount)
+                await GoToPageAsync(Page + 1);
+        }
+        public int PageCount => (int)Math.Ceiling((double)TotalOrders / PageSize);
+        public bool CanGoNext => Page < PageCount;
     }
 }

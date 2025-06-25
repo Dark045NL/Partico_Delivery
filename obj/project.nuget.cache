@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "z8OyCAgMNMM=",
+  "dgSpecHash": "9b1xCIv1a7k=",
   "success": true,
   "projectFilePath": "/Users/youri/Projects/Partico_delivery/Partico_Delivery.csproj",
   "expectedPackageFiles": [
@@ -123,7 +123,6 @@
     "/Users/youri/.nuget/packages/microsoft.ios.ref.net8.0_18.0/18.0.8324/microsoft.ios.ref.net8.0_18.0.18.0.8324.nupkg.sha512",
     "/Users/youri/.nuget/packages/microsoft.ios.runtime.iossimulator-arm64.net8.0_18.0/18.0.8324/microsoft.ios.runtime.iossimulator-arm64.net8.0_18.0.18.0.8324.nupkg.sha512",
     "/Users/youri/.nuget/packages/microsoft.maccatalyst.ref.net8.0_18.0/18.0.8324/microsoft.maccatalyst.ref.net8.0_18.0.18.0.8324.nupkg.sha512",
-    "/Users/youri/.nuget/packages/microsoft.maccatalyst.runtime.maccatalyst-x64.net8.0_18.0/18.0.8324/microsoft.maccatalyst.runtime.maccatalyst-x64.net8.0_18.0.18.0.8324.nupkg.sha512",
     "/Users/youri/.nuget/packages/microsoft.maccatalyst.runtime.maccatalyst-arm64.net8.0_18.0/18.0.8324/microsoft.maccatalyst.runtime.maccatalyst-arm64.net8.0_18.0.18.0.8324.nupkg.sha512"
   ],
   "logs": []
