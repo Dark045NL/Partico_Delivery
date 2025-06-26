@@ -9,7 +9,15 @@ namespace Partico_Delivery.Pages
         public DeliveriesPage()
         {
             InitializeComponent();
-            BindingContext = new DeliveriesViewModel();
+            var vm = new DeliveriesViewModel();
+            BindingContext = vm;
+            vm.StatusUpdateMessage += async (msg) =>
+            {
+                await MainThread.InvokeOnMainThreadAsync(async () =>
+                {
+                    await DisplayAlert("Status update", msg, "OK");
+                });
+            };
         }
 
         protected override async void OnAppearing()
@@ -34,7 +42,8 @@ namespace Partico_Delivery.Pages
             if (sender is Picker picker && picker.BindingContext is Partico_Delivery.Models.Order order)
             {
                 var selectedStatus = picker.SelectedItem as string;
-                if (!string.IsNullOrEmpty(selectedStatus) && BindingContext is DeliveriesViewModel vm)
+                var currentStatus = order.DeliveryStates.Count > 0 ? order.DeliveryStates[0].Status : null;
+                if (!string.IsNullOrEmpty(selectedStatus) && selectedStatus != currentStatus && BindingContext is DeliveriesViewModel vm)
                 {
                     await vm.UpdateOrderStatusAsync(order, selectedStatus);
                 }
