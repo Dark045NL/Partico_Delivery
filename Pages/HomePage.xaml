@@ -19,7 +19,7 @@
                 TextColor="White"
                 CornerRadius="12" />
 
-        <Button Text="🗺️ Route naar volgende adres"
+        <Button Text="🛣️ Route samenstellen"
                 FontSize="18"
                 Clicked="OnRouteClicked"
                 BackgroundColor="#34C759"

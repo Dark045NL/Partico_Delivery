@@ -3,6 +3,7 @@ using System.Globalization;
 using Microsoft.Maui.Controls;
 using System.Linq;
 using Partico_Delivery.ViewModels;
+using Partico_Delivery.Models;
 
 namespace Partico_Delivery.Pages
 {
@@ -10,10 +11,13 @@ namespace Partico_Delivery.Pages
 
     public partial class DeliveriesPage : ContentPage
     {
+        public static RouteViewModel SharedRouteViewModel = new RouteViewModel();
+
         public DeliveriesPage()
         {
             InitializeComponent();
             var vm = new DeliveriesViewModel();
+            vm.RouteVM = SharedRouteViewModel;
             BindingContext = vm;
             vm.StatusUpdateMessage += async (msg) =>
             {
@@ -24,13 +28,22 @@ namespace Partico_Delivery.Pages
             };
         }
 
+        // Toast helper
+        private void ShowToast(string message)
+        {
+            if (Application.Current?.MainPage != null)
+            {
+                ToastService.Show(message);
+            }
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             if (BindingContext is DeliveriesViewModel vm)
             {
                 await vm.LoadOrdersAsync();
-                Device.BeginInvokeOnMainThread(UpdatePaginationButtons);
+                this.Dispatcher.Dispatch(UpdatePaginationButtons);
             }
         }
 
@@ -51,7 +64,7 @@ namespace Partico_Delivery.Pages
                     TextColor = (pageNum == vm.Page) ? null : Colors.Black,
                     Opacity = (pageNum == vm.Page) ? 1.0 : 0.7
                 };
-                btn.Clicked += (s, e) => Device.BeginInvokeOnMainThread(UpdatePaginationButtons);
+                btn.Clicked += (s, e) => this.Dispatcher.Dispatch(UpdatePaginationButtons);
                 PaginationNumbers.Children.Add(btn);
             }
         }
@@ -83,7 +96,7 @@ namespace Partico_Delivery.Pages
             if (BindingContext is DeliveriesViewModel vm)
             {
                 vm.GoToPreviousPage();
-                Device.BeginInvokeOnMainThread(UpdatePaginationButtons);
+                this.Dispatcher.Dispatch(UpdatePaginationButtons);
             }
         }
 
@@ -92,7 +105,41 @@ namespace Partico_Delivery.Pages
             if (BindingContext is DeliveriesViewModel vm)
             {
                 await vm.GoToNextPage();
-                Device.BeginInvokeOnMainThread(UpdatePaginationButtons);
+                this.Dispatcher.Dispatch(UpdatePaginationButtons);
+            }
+        }
+
+        private void OnAddToRouteClicked(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn.CommandParameter is Order order && BindingContext is DeliveriesViewModel vm)
+            {
+                vm.RouteVM.AddOrderToRoute(order);
+                order.InRoute = true;
+                // Force refresh of the item in the ObservableCollection
+                int idx = vm.Orders.IndexOf(order);
+                if (idx >= 0)
+                {
+                    vm.Orders.RemoveAt(idx);
+                    vm.Orders.Insert(idx, order);
+                }
+                ToastService.Show($"Toegevoegd aan route: {order.Customer?.Name ?? order.Id.ToString()}");
+            }
+        }
+
+        private void OnRemoveFromRouteClicked(object sender, EventArgs e)
+        {
+            if (sender is Button btn && btn.CommandParameter is Order order && BindingContext is DeliveriesViewModel vm)
+            {
+                vm.RouteVM.RemoveOrderFromRoute(order);
+                order.InRoute = false;
+                // Force refresh of the item in the ObservableCollection
+                int idx = vm.Orders.IndexOf(order);
+                if (idx >= 0)
+                {
+                    vm.Orders.RemoveAt(idx);
+                    vm.Orders.Insert(idx, order);
+                }
+                ToastService.Show($"Verwijderd uit route: {order.Customer?.Name ?? order.Id.ToString()}");
             }
         }
     }

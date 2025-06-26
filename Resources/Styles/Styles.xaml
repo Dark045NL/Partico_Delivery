@@ -424,4 +424,35 @@
         <Setter Property="SelectedTabColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <!-- Style for orders not in the route -->
+    <Style x:Key="DefaultOrderFrameStyle" TargetType="Frame">
+        <Setter Property="BorderColor" Value="LightGray" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="HasShadow" Value="False" />
+    </Style>
+
+    <!-- Style for orders in the route -->
+    <Style x:Key="SelectedOrderFrameStyle" TargetType="Frame">
+        <Setter Property="BorderColor" Value="{StaticResource Primary}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="HasShadow" Value="True" />
+    </Style>
+
+    <Style x:Key="SelectedOrderButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+    <Style x:Key="SelectedOrderLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+
+    <Style x:Key="SelectedOrderPickerStyle" TargetType="Picker">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+    </Style>
+
 </ResourceDictionary>

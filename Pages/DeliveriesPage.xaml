@@ -13,6 +13,26 @@
             <converters:PrevPageEnabledConverter x:Key="PrevPageEnabledConverter" />
             <converters:NextPageEnabledConverter x:Key="NextPageEnabledConverter" />
             <converters:CurrentPageToColorConverter x:Key="CurrentPageToColorConverter" />
+            <converters:OrderInRouteToStyleConverter x:Key="OrderInRouteToStyleConverter" />
+            <converters:OrderInRouteToAddVisibleConverter x:Key="OrderInRouteToAddVisibleConverter" />
+            <converters:OrderInRouteToRemoveVisibleConverter x:Key="OrderInRouteToRemoveVisibleConverter" />
+            <Style x:Key="SelectedOrderFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#D0FFD6" />
+            </Style>
+            <Style x:Key="DefaultOrderFrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            <Style x:Key="SelectedOrderLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="SelectedOrderButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            <Style x:Key="SelectedOrderPickerStyle" TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
@@ -30,25 +50,81 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="5" Padding="10" BorderColor="Gray">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Customer.Name}" FontAttributes="Bold" />
-                            <Label Text="{Binding Customer.Address}" FontSize="14" />
-                            <Label Text="{Binding OrderDate, StringFormat='Besteld op: {0:dd-MM-yyyy HH:mm}'}" FontSize="12" />
-                            <Picker Title="Status aanpassen"
+                    <Frame Margin="5" Padding="10" BorderColor="Gray"
+                           Style="{Binding ., Converter={StaticResource OrderInRouteToStyleConverter}}">
+                        <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="*,Auto">
+                            <!-- Rij 0: Tekst en knoppen -->
+                            <VerticalStackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
+                                <Label Text="{Binding Customer.Name}" FontAttributes="Bold">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding InRoute}" Value="True">
+                                            <Setter Property="Style" Value="{StaticResource SelectedOrderLabelStyle}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label Text="{Binding Customer.Address}" FontSize="14">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding InRoute}" Value="True">
+                                            <Setter Property="Style" Value="{StaticResource SelectedOrderLabelStyle}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                                <Label Text="{Binding OrderDate, StringFormat='Besteld op: {0:dd-MM-yyyy HH:mm}'}" FontSize="12">
+                                    <Label.Triggers>
+                                        <DataTrigger TargetType="Label" Binding="{Binding InRoute}" Value="True">
+                                            <Setter Property="Style" Value="{StaticResource SelectedOrderLabelStyle}" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+                            </VerticalStackLayout>
+                            <HorizontalStackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="End" VerticalOptions="Start">
+                                <Button Text="+"
+                                        IsVisible="{Binding ., Converter={StaticResource OrderInRouteToAddVisibleConverter}}"
+                                        Clicked="OnAddToRouteClicked"
+                                        CommandParameter="{Binding .}">
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button" Binding="{Binding InRoute}" Value="True">
+                                            <Setter Property="Style" Value="{StaticResource SelectedOrderButtonStyle}" />
+                                        </DataTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                                <Button Text="-"
+                                        IsVisible="{Binding ., Converter={StaticResource OrderInRouteToRemoveVisibleConverter}}"
+                                        Clicked="OnRemoveFromRouteClicked"
+                                        CommandParameter="{Binding .}">
+                                    <Button.Triggers>
+                                        <DataTrigger TargetType="Button" Binding="{Binding InRoute}" Value="True">
+                                            <Setter Property="Style" Value="{StaticResource SelectedOrderButtonStyle}" />
+                                        </DataTrigger>
+                                    </Button.Triggers>
+                                </Button>
+                            </HorizontalStackLayout>
+                            <!-- Rij 1: Picker en bijwerk-knop -->
+                            <Picker Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                                    Title="Status aanpassen"
                                     ItemsSource="{Binding BindingContext.PossibleStatuses, Source={x:Reference Name=DeliveriesPageRef}}"
                                     SelectedItem="{Binding DeliveryStates[0].Status, Mode=TwoWay}"
-                                    SelectedIndexChanged="OnStatusChanged" />
-                            <Button Text="Status bijwerken"
+                                    SelectedIndexChanged="OnStatusChanged">
+                                <Picker.Triggers>
+                                    <DataTrigger TargetType="Picker" Binding="{Binding InRoute}" Value="True">
+                                        <Setter Property="Style" Value="{StaticResource SelectedOrderPickerStyle}" />
+                                    </DataTrigger>
+                                </Picker.Triggers>
+                            </Picker>
+                            <Button Grid.Row="1" Grid.Column="1"
+                                    Text="Status bijwerken"
                                     Command="{Binding BindingContext.UpdateStatusCommand, Source={x:Reference Name=DeliveriesPageRef}}"
                                     CommandParameter="{Binding .}">
                                 <Button.Triggers>
                                     <DataTrigger TargetType="Button" Binding="{Binding DeliveryStates.Count}" Value="0">
                                         <Setter Property="IsVisible" Value="False" />
                                     </DataTrigger>
+                                    <DataTrigger TargetType="Button" Binding="{Binding InRoute}" Value="True">
+                                        <Setter Property="Style" Value="{StaticResource SelectedOrderButtonStyle}" />
+                                    </DataTrigger>
                                 </Button.Triggers>
                             </Button>
-                        </VerticalStackLayout>
+                        </Grid>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

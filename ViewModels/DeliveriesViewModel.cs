@@ -141,6 +141,8 @@ namespace Partico_Delivery.ViewModels
                     {
                         order.DeliveryStates = new List<DeliveryState>();
                     }
+                    // Sync InRoute property met de actuele route
+                    order.InRoute = RouteVM != null && RouteVM.IsOrderInRoute(order.Id);
                     Orders.Add(order);
                 }
                 TotalOrders = paged.Total;
@@ -231,5 +233,7 @@ namespace Partico_Delivery.ViewModels
         }
         public int PageCount => (int)Math.Ceiling((double)TotalOrders / PageSize);
         public bool CanGoNext => Page < PageCount;
+
+        public RouteViewModel RouteVM { get; set; } = new RouteViewModel();
     }
 }

@@ -3,37 +3,54 @@
              x:Class="Partico_Delivery.Pages.RoutePage"
              Title="Route"
              BackgroundColor="White">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Herlaad" Clicked="OnReloadClicked" Order="Primary" Priority="0" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Start">
+            <Button Text="← Terug"
+                    Clicked="OnBackButtonClicked"
+                    HorizontalOptions="Start"
+                    BackgroundColor="Transparent"
+                    TextColor="Black"
+                    FontSize="18" />
 
-    <VerticalStackLayout Padding="20" Spacing="20" VerticalOptions="Center">
-        <Button Text="← Terug"
-                Clicked="OnBackButtonClicked"
-                HorizontalOptions="Start"
-                BackgroundColor="Transparent"
-                TextColor="Black"
-                FontSize="18" />
+            <Label Text="Stel je route samen"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
 
-        <Label Text="Navigatie naar afleveradres"
-               FontSize="24"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
+            <Label Text="Huidige route:" FontAttributes="Bold" />
+            <CollectionView x:Name="RouteOrdersView" ItemsSource="{Binding CurrentRoute.Orders}" SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <Label Text="{Binding Sequence}" />
+                            <Label Text="Bestelling #{Binding OrderId}" />
+                            <Label Text="{Binding Delivered, Converter={StaticResource StatusToTextConverter}}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-        <Button Text="📍 Huidige locatie ophalen"
-                Clicked="OnGetLocationClicked"
-                BackgroundColor="#007AFF"
-                TextColor="White"
-                CornerRadius="12" />
+            <Button Text="Markeer huidige als bezorgd"
+                    Clicked="OnMarkDeliveredClicked"
+                    BackgroundColor="#FF9500"
+                    TextColor="White"
+                    CornerRadius="12" />
 
-        <Button Text="🧭 Open route in Kaarten"
-                Clicked="OnNavigateClicked"
-                BackgroundColor="#34C759"
-                TextColor="White"
-                CornerRadius="12" />
+            <Button Text="➡️ Open route naar volgende stop"
+                    Clicked="OnNavigateClicked"
+                    BackgroundColor="#34C759"
+                    TextColor="White"
+                    CornerRadius="12" />
 
-        <Label x:Name="locationLabel"
-               Text=""
-               FontSize="16"
-               HorizontalOptions="Center"
-               TextColor="Gray"
-               HorizontalTextAlignment="Center" />
-    </VerticalStackLayout>
+            <Label x:Name="locationLabel"
+                   Text=""
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   TextColor="Gray"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

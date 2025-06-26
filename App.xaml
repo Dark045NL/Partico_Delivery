@@ -2,6 +2,7 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Partico_Delivery"
+             xmlns:converters="clr-namespace:Partico_Delivery.Pages"
              x:Class="Partico_Delivery.App">
     <Application.Resources>
         <ResourceDictionary>
@@ -9,6 +10,7 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <converters:StatusToTextConverter x:Key="StatusToTextConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

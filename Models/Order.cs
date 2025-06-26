@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace Partico_Delivery.Models
 {
-    public class Order
+    public class Order : INotifyPropertyChanged
     {
         [JsonPropertyName("id")]
         public int Id { get; set; }
@@ -37,6 +38,20 @@ namespace Partico_Delivery.Models
         }
 
         public string? FirstDeliveryStatus => DeliveryStates != null && DeliveryStates.Count > 0 ? DeliveryStates[0].Status : null;
+
+        // Toegevoegd: GPS-coördinaten voor route/navigatie
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        private bool _inRoute;
+        public bool InRoute
+        {
+            get => _inRoute;
+            set { if (_inRoute != value) { _inRoute = value; OnPropertyChanged(nameof(InRoute)); } }
+        }
     }
 
     public class Customer
